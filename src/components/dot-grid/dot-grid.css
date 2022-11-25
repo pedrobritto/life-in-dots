@@ -1,0 +1,62 @@
+.dot-grid__container {
+  text-align: center;
+}
+
+.dot-grid__description {
+  margin-bottom: 2rem;
+  font-style: italic;
+}
+
+.dot-grid__grid .year {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+.dot-grid__grid .dot {
+  width: 12px;
+  height: 12px;
+  border: 1px solid #555;
+  border-radius: 100%;
+}
+
+.dot-grid__grid .year.filled > .dot {
+  background-color: #555;
+}
+
+.dot-grid__grid .dot.filled {
+  background-color: #555;
+}
+
+.dot-grid__grid .break {
+  font-size: 0.75rem;
+  margin: 2rem 0;
+
+  position: relative;
+}
+
+.dot-grid__grid .break span {
+  padding: 0 1rem;
+  background-color: #fff;
+}
+
+.dot-grid__grid .break::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  width: 300px;
+  height: 1px;
+  background-color: #ccc;
+  top: 50%;
+  left: calc(50% - 150px);
+  z-index: -1;
+}
+
+.dot-grid__end {
+  margin-top: 4rem;
+}
+
+.dot-grid__tomb {
+  font-size: 5rem;
+}
