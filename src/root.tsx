@@ -6,7 +6,6 @@ import {
 } from "@builder.io/qwik-city";
 
 import globalStyles from "./global.css?inline";
-import resetStyles from "./reset.css?inline";
 
 export default component$(() => {
   /**
@@ -16,7 +15,6 @@ export default component$(() => {
    * Dont remove the `<head>` and `<body>` elements.
    */
   useStyles$(globalStyles);
-  useStyles$(resetStyles);
 
   return (
     <QwikCity>
@@ -25,7 +23,7 @@ export default component$(() => {
         <link rel="manifest" href="/manifest.json" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body lang="en">
+      <body lang="en" class="bg-slate-100">
         <RouterOutlet />
         <ServiceWorkerRegister />
       </body>

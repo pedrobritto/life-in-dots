@@ -4,7 +4,7 @@ import { DotGrid } from "~/components/dot-grid/dot-grid";
 import { getLivedTime } from "~/helpers/time.helpers";
 
 export default component$(() => {
-  const showResults = useSignal(false);
+  const showResults = useSignal(true);
   const dob = useSignal("");
 
   const YEARS_IN_LIFE = 80;
@@ -16,38 +16,46 @@ export default component$(() => {
 
   return (
     <div>
-      <div className="container">
-        <header style={{ textAlign: "center", marginBottom: "40px" }}>
+      <div class="mx-auto py-16 text-center max-w-4xl">
+        <header class="text-center mb-10">
           {showResults.value ? (
             <>
-              <h1>
+              <h1 class="text-xl font-bold">
                 You lived {livedYears} years and {livedWeeks} weeks so far.
               </h1>
+
               <div>
                 If you are lucky to live until {YEARS_IN_LIFE} years old, you
                 have {YEARS_IN_LIFE - livedYears} years and {52 - livedWeeks}{" "}
                 weeks left.
               </div>
 
-              <div style={{ margin: "20px" }}>Enjoy.</div>
+              <div class="mt-5">Enjoy.</div>
             </>
           ) : (
             <>
-              <h1 style={{ marginBottom: "20px" }}>See your life in dots</h1>
+              <h1 class="font-bold text-3xl">See your life in dots</h1>
             </>
           )}
         </header>
 
         {showResults.value ? (
-          <button onClick$={() => (showResults.value = false)}>
+          <button
+            class="text-blue-600 underline mb-8"
+            onClick$={() => (showResults.value = false)}
+          >
             Try a different birth date
           </button>
         ) : (
-          <form class="controls" preventdefault:submit>
+          <form
+            class="flex flex-col justify-center items-center gap-4"
+            preventdefault:submit
+          >
             <label class="dob">
-              <span>Your birth date</span>
+              <span class="block mb-1">Your birth date</span>
               <input
                 type="date"
+                class="block rounded py-1 px-2 border border-gray-900"
                 value={dob.value}
                 onChange$={(event) => (dob.value = event.target.value)}
               />
@@ -55,7 +63,7 @@ export default component$(() => {
 
             <div>
               <button
-                class="button main"
+                class="bg-blue-600 hover:bg-blue-800 transition text-white text-lg cursor-pointer rounded-md px-4 py-2 disabled:bg-gray-500 disabled:cursor-default"
                 type="submit"
                 disabled={!dob.value}
                 onClick$={() => {

@@ -19,16 +19,16 @@ export const DotGrid = component$(
     });
 
     return (
-      <div class="dot-grid__container">
-        <div class="dot-grid__description">
+      <div class="text-center">
+        <div class="mb-8 italic">
           Each row represents a year and each dot represents a week.
         </div>
 
-        <div class="dot-grid__grid">{dotGrid}</div>
+        <div class="grid">{dotGrid}</div>
 
-        <div class="dot-grid__end">
+        <div class="mt-16">
           <div>And then, just like that...</div>
-          <div className="dot-grid__tomb">🪦</div>
+          <div class="text-7xl mt-4">🪦</div>
         </div>
       </div>
     );
