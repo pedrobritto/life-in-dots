@@ -5,30 +5,30 @@ import dotGridStyles from "./dot-grid.css?inline";
 
 interface DotGridProps {
   livedYears: number;
-  livedWeeks: number;
+  livedMonths: number;
   lifeSpan: number;
 }
 export const DotGrid = component$(
-  ({ livedYears, livedWeeks, lifeSpan }: DotGridProps) => {
+  ({ livedYears, livedMonths, lifeSpan }: DotGridProps) => {
     useStylesScoped$(dotGridStyles);
 
     const dotGrid = generateDotGrid({
       livedYears: livedYears,
-      livedWeeks: livedWeeks,
+      livedMonths: livedMonths,
       lifeSpan: lifeSpan,
     });
 
     return (
       <div class="text-center">
         <div class="mb-8 italic">
-          Each row represents a year and each dot represents a week.
+          Each row represents a year and each dot represents a month.
         </div>
 
         <div class="grid">{dotGrid}</div>
 
         <div class="mt-16">
-          <div>And then, just like that...</div>
-          <div class="text-7xl mt-4">🪦</div>
+          <div>And then, just like that, you're gone.</div>
+          <div class="text-5xl mt-4">🪦</div>
         </div>
       </div>
     );

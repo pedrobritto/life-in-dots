@@ -1,24 +1,32 @@
 interface DotGridProps {
   livedYears: number;
-  livedWeeks: number;
+  livedMonths: number;
   lifeSpan: number;
 }
 
 export function generateDotGrid({
   livedYears,
-  livedWeeks,
+  livedMonths,
   lifeSpan,
 }: DotGridProps) {
   let currentRow = 0;
 
   const gridComponents = [];
 
-  const yearRow = Array(52)
+  const yearRow = Array(12)
     .fill("")
     .map(() => <div class="dot" />);
 
   while (currentRow < lifeSpan) {
     const currentYear = currentRow + 1;
+
+    if (currentRow === 0) {
+      gridComponents.push(
+        <div class="break">
+          <span>Your first years</span>
+        </div>
+      );
+    }
 
     if (currentRow < livedYears) {
       gridComponents.push(
@@ -27,17 +35,17 @@ export function generateDotGrid({
         </div>
       );
     } else if (currentRow === livedYears) {
-      const filledWeeks = Array(livedWeeks)
+      const filledMonths = Array(livedMonths)
         .fill("")
         .map(() => <div class="dot filled" />);
 
-      const emptyWeeks = Array(52 - livedWeeks)
+      const emptyMonths = Array(12 - livedMonths)
         .fill("")
         .map(() => <div class="dot empty" />);
 
       gridComponents.push(
         <div class="year" id={`year-${currentYear}`}>
-          {[...filledWeeks, ...emptyWeeks]}
+          {[...filledMonths, ...emptyMonths]}
         </div>
       );
     } else {

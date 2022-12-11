@@ -4,48 +4,48 @@ import { DotGrid } from "~/components/dot-grid/dot-grid";
 import { getLivedTime } from "~/helpers/time.helpers";
 
 export default component$(() => {
-  const showResults = useSignal(true);
+  const showResults = useSignal(false);
   const dob = useSignal("");
 
   const YEARS_IN_LIFE = 80;
 
-  const { livedYears, livedWeeks } = getLivedTime({
+  const { livedYears, livedMonths } = getLivedTime({
     dateOfBirth: new Date(dob.value),
     currentDate: new Date(),
   });
 
   return (
     <div>
-      <div class="mx-auto py-16 text-center max-w-4xl">
-        <header class="text-center mb-10">
+      <div class="mx-auto py-16 px-8 text-center max-w-4xl">
+        {!showResults.value && <div class="pt-16" />}
+
+        <header class="text-center mb-8">
           {showResults.value ? (
-            <>
-              <h1 class="text-xl font-bold">
-                You lived {livedYears} years and {livedWeeks} weeks so far.
-              </h1>
-
-              <div>
-                If you are lucky to live until {YEARS_IN_LIFE} years old, you
-                have {YEARS_IN_LIFE - livedYears} years and {52 - livedWeeks}{" "}
-                weeks left.
-              </div>
-
-              <div class="mt-5">Enjoy.</div>
-            </>
+            <h1 class="text-2xl font-bold">
+              You lived {livedYears} years and {livedMonths} months so far.
+            </h1>
           ) : (
-            <>
-              <h1 class="font-bold text-3xl">See your life in dots</h1>
-            </>
+            <h1 class="font-bold text-3xl">See your life in dots</h1>
           )}
         </header>
 
         {showResults.value ? (
-          <button
-            class="text-blue-600 underline mb-8"
-            onClick$={() => (showResults.value = false)}
-          >
-            Try a different birth date
-          </button>
+          <>
+            <div>
+              If you are lucky enough to live until {YEARS_IN_LIFE} years old,
+              then you have {YEARS_IN_LIFE - livedYears} years and{" "}
+              {12 - livedMonths} months left.
+            </div>
+
+            <div class="mt-5 font-bold">Don't waste it.</div>
+
+            <button
+              class="text-blue-600 underline mb-8 mt-5"
+              onClick$={() => (showResults.value = false)}
+            >
+              Try a different birth date
+            </button>
+          </>
         ) : (
           <form
             class="flex flex-col justify-center items-center gap-4"
@@ -67,7 +67,6 @@ export default component$(() => {
                 type="submit"
                 disabled={!dob.value}
                 onClick$={() => {
-                  console.log("dob", dob.value);
                   showResults.value = true;
                 }}
               >
@@ -80,7 +79,7 @@ export default component$(() => {
         {showResults.value === true && (
           <DotGrid
             livedYears={livedYears}
-            livedWeeks={livedWeeks}
+            livedMonths={livedMonths}
             lifeSpan={YEARS_IN_LIFE}
           />
         )}

@@ -1,9 +1,9 @@
 .grid .year {
-  @apply flex gap-1 mb-1;
+  @apply flex gap-2 mb-2 justify-center;
 }
 
 .grid .dot {
-  @apply w-3 h-3 border border-gray-700 rounded-full;
+  @apply w-5 h-5 border border-gray-700 rounded-full;
 }
 
 .grid .year.filled > .dot,
@@ -17,13 +17,4 @@
 
 .grid .break span {
   @apply bg-slate-100 px-4;
-}
-
-.grid .break::after {
-  @apply block absolute w-80 border-t border-gray-300 -z-10;
-
-  content: "";
-
-  top: 50%;
-  left: calc(50% - 150px);
 }
